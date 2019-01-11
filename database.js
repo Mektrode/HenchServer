@@ -1,8 +1,54 @@
 const db = {
     users: [//add jwt authentication then meals under it here!!
-        { id:'1', email:'jolovlok1@gmail.com0', name:'Jo'},
-        { id:'2', email:'Lilss1@gmail.com0', name:'Lily'},
-        { id:'3', email:'husky3@gmail.com0', name:'Huncho'}
+        { 
+            id:'1', 
+            email:'mlaffin@gmail.com',
+            username: 'JMo',
+            name:'Jamaal M',
+            stats : {
+                bodytype: "Ectomorph",
+                weight: {
+                    lastUpdated:'09022020',
+                    value:68
+                },
+                height: {
+                    lastUpdated:'09022020',
+                    value:175
+                },
+            },
+            target : {
+                tweight: 75,
+                deadline: 11022020
+            },
+            meals : [
+                {
+                    id: '45345',
+                    dateCreated: '',
+                    userCreated: '',
+                    items: [
+                        {
+                            //point to id of consumable after adding
+                            id: 89743216,
+                            amountConsumed: '2',
+                            amount: 'whole',
+                            cookingStyle: 'Fried'
+                        },
+                        {
+                            id: 56492578,
+                            amountConsumed: '20',
+                            amount: 'g',
+                            cookingStyle: 'Uncooked'
+                        },
+                        {
+                            id: 21878415,
+                            amountConsumed: '400',
+                            amount: 'ml',
+                            cookingStyle: 'Uncooked'//what to do for cookingStyle of drinks?
+                        },
+                    ],
+                }
+            ]
+        },
     ],
     consumables: [
         {//clean up by doing weightTotal, calories100, carbs100 ,carbsOWS100, fat100, fatOWS100, protein100, salt100, and maybe extras like fibre & calcium etc...
