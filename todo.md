@@ -23,7 +23,7 @@ FrontEnd:
 - Onboarding (part 1) is just calling Creating Stats for the first time
 - Onboarding (part 2) is adding targets
 
-
+- to be able to 
 
 
 //GraphiQL shortcuts
@@ -32,6 +32,7 @@ FrontEnd:
 mutation {
   addConsumable(addcon:{name: "Tea"}) {
     id
+    name
     barcode
     proteinfull
   },
@@ -40,6 +41,18 @@ mutation {
   }
 }
 
+//nested views of stats from users
+
+query {
+  user(id: "1"){
+    stats {
+      bodyType
+      bodyTypeLastUpdated
+      latestWeight
+      latestHeight
+    }
+  }
+}
 
 
 //search username

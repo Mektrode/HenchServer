@@ -30,7 +30,7 @@ module.exports = buildSchema(`
         uname: String
         password: String
         #[Meal!]
-        #stats: Stats
+        stats: Stats
         #targets: Targets
     }
 
@@ -62,7 +62,7 @@ module.exports = buildSchema(`
     }
 
     type NewBodyType {
-        nBodyType: Int
+        nBodyType: String
         Date: String
         Time: String
     }
