@@ -17,6 +17,13 @@ QL {
     => 
     => 
 }
+Notes:-
+
+FrontEnd: 
+- Onboarding (part 1) is just calling Creating Stats for the first time
+- Onboarding (part 2) is adding targets
+
+
 
 
 //GraphiQL shortcuts
@@ -28,10 +35,8 @@ mutation {
     barcode
     proteinfull
   },
-    addUser(email: "filip@live.com", name: "MrFilip") {
-    id
-    name
-    email
+    addUser(email: "filip@live.com", username: "MrFilip",password: "jkUDFa") {
+    username
   }
 }
 

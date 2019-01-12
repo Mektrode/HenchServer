@@ -5,17 +5,10 @@ const db = require('./database.js').db;
 
 const schema = buildSchema (`
 
-    type User {
-        id: ID!
-        email: String!
-        name: String
-        uname: String
-    }
-
     type Consumable {
+        name: String!
         id: ID
         barcode: Int
-        name: String!
         cookingstyle: String
         totalweight: Int
         caloriesfull: Int
@@ -25,17 +18,105 @@ const schema = buildSchema (`
 
     input AddCon {
         name: String!
+        id: ID
+        barcode: Int
+        cookingstyle: String
+        totalweight: Int
+        caloriesfull: Int
+        carbsfull: Int
+        proteinfull: Int
     }
 
+    type User {#get only
+        id: ID!
+        email: String!
+        name: String
+        uname: String
+        password: String
+        #[Meal!]
+        #stats: Stats
+        #targets: Targets
+    }
+
+    type Stats {#get info from each individual Types defined below Stats
+        bodyType: String
+        bodyTypeLastUpdated: String
+        latestWeight: Int
+        weightLastUpdated: String
+        latestHeight: Int
+        heightLastUpdated: String 
+    }
+
+    type NewWeight {
+        nWeight: Int
+        Date: String
+        Time: String
+    }
+
+    type NewHeight {
+        nHeight: Int
+        Date: String
+        Time: String
+    }
+
+    type NewBodyType {
+        nBodyType: Int
+        Date: String
+        Time: String
+    }
+
+    input AddUser {
+        email: String
+        username: String
+        password: String
+    }
+
+    input AddWeight{
+        nWeight: Int
+        Date: String
+        Time: String
+    }
+    
+    input AddHeight{
+        nWeight: Int
+        Date: String
+        Time: String
+    }
+    
+    input AddBodyType{
+        nBodyType: Int
+        Date: String
+        Time: String
+    }
+
+    #input Targets { //add later
+    #    weight: Int
+    #    deadlineSet: String
+    #}
+
+    #when refering to objects passed down from inputs above, 
+    #key is:-
+    #smallThenCapitals = resolver function name && possibly any child args passed down 2 levels
+    #smallalltheway = js object passed through args
+    #CapitalOnEveryNewLetter = the Input Object name || the Type name
+
     type RootMutation {
-        addUser (email: String!, name: String): User
+        addUser (adduser: AddUser): User
+        
         addConsumable(addcon: AddCon): Consumable
-        #Update consumable
-        #create a meal
-        #Update a meal
-        #create onboarding
-        #Update a stat
-        #Update a target
+        
+        #Stats
+        addWeight (addweight: AddWeight): NewWeight
+        addHeight (addheight: AddHeight): NewHeight
+        addBodyType (addbodytype: AddBodyType): NewBodyType
+
+        #Todo:-
+            #Update consumable
+            #Create a meal
+            #Update a meal
+            #Create target type and input
+            #Update a stat (weight/height or bodyType) to delete accidental entry for example
+            #Update a target
     }
 
     type RootQuery {
@@ -97,12 +178,15 @@ const rootValue = {
 
     addConsumable: args => {
         const consumableItem ={
-            id: Date.now,
+            id: Math.random().toString(),//Database will takecare of this later
+
             //since mutation added was an Input then called addConsumable(addcon:AddCon)
             //hence addcon is our arg and our name value is nested within addcon 1 layer deeper
             //discovered by running a console.log on args below this object!
-            name: args.addcon.name
+            name: args.addcon.name,
             //hence name is now properly defined
+
+            barcode: Date.now,
         }
         //console.log(name) when debugging this caused bug since name is undefined outside of the object without pointing into consumableItem.name instead
         //console.log(args)
