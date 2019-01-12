@@ -4,11 +4,23 @@ const {buildSchema } = require('graphql');
 const db = require('./database.js').db;
 
 const schema = buildSchema (`
-    type Query {
-        users: [User!]!
-        user(id: ID!): User
-        consume(name: String, barcode: Int): Consumable
-        allconsumables: [Consumable!]!
+
+    type User {
+        id: ID!
+        email: String!
+        name: String
+        uname: String
+    }
+
+    type Consumable {
+        id: ID!
+        barcode: Int!
+        name: String!
+        cookingstyle: String!
+        weightfull: Int!
+        caloriesfull: Int!  
+        carbsfull: Int!
+        proteinfull: Int!
     }
 
     type Mutation {
@@ -24,25 +36,17 @@ const schema = buildSchema (`
         #Update a target
     }
 
-    type User {
-        id: ID!
-        email: String!
-        name: String
-    }
-
-    type Consumable {
-        id: ID!
-        barcode: Int!
-        name: String!
-        cookingstyle: String!
-        weightfull: Int!
-        caloriesfull: Int!  
-        carbsfull: Int!
-        proteinfull: Int!
+    type Query {
+        users: [User!]!
+        user(id: ID!): User
+        username(uname: String): User
+        consume(name: String, barcode: Int): Consumable
+        allconsumables: [Consumable!]!
     }
 `);
 
 const rootValue = {
+    //resolve all the queries to expect
     users: () => db.users,
 
     allconsumables: () => db.consumables,
@@ -50,8 +54,14 @@ const rootValue = {
     //user: args => db.users.find(user => user.id === args.id),
     // Same as code below!!
     user: function (args) {
-        return db.users.find(function(user){
+        return db.users.find(function(user){//parameter user is from db.users
             return user.id === args.id
+        })
+    },
+
+    username: function (args) {
+        return db.users.find(function(user){
+            return user.username === args.uname
         })
     },
 
