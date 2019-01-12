@@ -6,20 +6,17 @@ const db = {
             username: 'JMo',
             name:'Jamaal M',
             stats : {
-                bodytype: "Ectomorph",
-                weight: {
-                    lastUpdated:'09022020',
-                    value:68
-                },
-                height: {
-                    lastUpdated:'09022020',
-                    value:175
-                },
+                bodyType: "Ectomorph",
+                bodyTypeLastUpdated: "like11022012",//String
+                latestWeight: 65,
+                weightLastUpdated: "maybe1202012",//String
+                latestHeight: 172,
+                heightLastUpdated: "prolly11067012",//String
             },
-            target : {
+            /*target : {
                 tweight: 75,
                 deadline: 11022020
-            },
+            },*/
             meals : [
                 {
                     id: '45345',
@@ -80,9 +77,6 @@ const db = {
             carbsfull: 9.1,
             proteinfull: 8,
         },
-    ],
-    meals: [
-        { id:'1', itemId: '2',}//Grabs different consumbles and adds date of creation etc...
     ]
 }
 

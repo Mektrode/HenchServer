@@ -38,6 +38,12 @@ const schema = buildSchema (`
         #targets: Targets
     }
 
+    input AddUser {
+        email: String
+        username: String
+        password: String
+    }
+
     type Stats {#get info from each individual Types defined below Stats
         bodyType: String
         bodyTypeLastUpdated: String
@@ -65,12 +71,6 @@ const schema = buildSchema (`
         Time: String
     }
 
-    input AddUser {
-        email: String
-        username: String
-        password: String
-    }
-
     input AddWeight{
         nWeight: Int
         Date: String
@@ -94,8 +94,8 @@ const schema = buildSchema (`
     #    deadlineSet: String
     #}
 
-    #when refering to objects passed down from inputs above, 
-    #key is:-
+    #When refering to objects passed down from inputs above;
+    #Key is:-
     #smallThenCapitals = resolver function name && possibly any child args passed down 2 levels
     #smallalltheway = js object passed through args
     #CapitalOnEveryNewLetter = the Input Object name || the Type name
@@ -177,6 +177,11 @@ const rootValue = {
     },
 
     addConsumable: args => {
+        //Date is object that must be called on its own before manipulated
+        let da = new Date()
+        //GraphQL cannot handle Integers larger then 32Bit (natively)
+        //JS cannot slice an Integer
+        //therefore use .getTime().toString().slice(0, 8);
         const consumableItem ={
             id: Math.random().toString(),//Database will takecare of this later
 
@@ -186,7 +191,7 @@ const rootValue = {
             name: args.addcon.name,
             //hence name is now properly defined
 
-            barcode: Date.now,
+            barcode: da.getTime().toString().slice(0, 8),
         }
         //console.log(name) when debugging this caused bug since name is undefined outside of the object without pointing into consumableItem.name instead
         //console.log(args)
