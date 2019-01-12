@@ -90,16 +90,22 @@ const rootValue = {
             email: args.email,
             name: args.name
         }
+        console.log(args)
         db.users.push(user);
         return user
     },
 
-    addConsumable: ({name}) => {
+    addConsumable: args => {
         const consumableItem ={
             id: Date.now,
-            name //call args username name of query Input above
+            //since mutation added was an Input then called addConsumable(addcon:AddCon)
+            //hence addcon is our arg and our name value is nested within addcon 1 layer deeper
+            //discovered by running a console.log on args below this object!
+            name: args.addcon.name
+            //hence name is now properly defined
         }
-        console.log(name)
+        //console.log(name) when debugging this caused bug since name is undefined outside of the object without pointing into consumableItem.name instead
+        //console.log(args)
         db.consumables.push(consumableItem);
         return consumableItem
         //return db.consumables
