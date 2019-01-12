@@ -23,7 +23,7 @@ const schema = buildSchema (`
         proteinfull: Int!
     }
 
-    type Mutation {
+    type RootMutation {
         addUser (email: String!, name: String): User
         addConsumable (name: String!, weightfull: Int!): Consumable
         #Update consumable
@@ -36,12 +36,17 @@ const schema = buildSchema (`
         #Update a target
     }
 
-    type Query {
+    type RootQuery {
         users: [User!]!
         user(id: ID!): User
         username(uname: String): User
         consume(name: String, barcode: Int): Consumable
         allconsumables: [Consumable!]!
+    }
+
+    schema {
+        query: RootQuery
+        mutation: RootMutation
     }
 `);
 

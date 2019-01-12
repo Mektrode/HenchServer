@@ -24,6 +24,7 @@ const db = {
                 {
                     id: '45345',
                     dateCreated: '',
+                    name: 'Breakfast',
                     userCreated: '',
                     items: [
                         {
