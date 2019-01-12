@@ -43,6 +43,7 @@ module.exports = buildSchema(`
     type Stats {#get info from each individual Types defined below Stats
         bodyType: String
         bodyTypeLastUpdated: String
+#howtogetpreviousinanarray
         latestWeight: Int
         weightLastUpdated: String
         latestHeight: Int
@@ -52,37 +53,31 @@ module.exports = buildSchema(`
     type NewWeight {
         nWeight: Int
         Date: String
-        Time: String
     }
 
     type NewHeight {
         nHeight: Int
         Date: String
-        Time: String
     }
 
     type NewBodyType {
         nBodyType: String
         Date: String
-        Time: String
     }
 
     input AddWeight{
         nWeight: Int
         Date: String
-        Time: String
     }
 
     input AddHeight{
         nWeight: Int
         Date: String
-        Time: String
     }
 
     input AddBodyType{
         nBodyType: Int
         Date: String
-        Time: String
     }
 
     #input Targets { //add later

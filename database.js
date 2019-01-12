@@ -14,6 +14,52 @@ users: [//add jwt authentication then meals under it here!!
             latestHeight: 172,
             heightLastUpdated: "prolly11067012",//String
         },
+        prevStatsLog: [
+            {
+                prevBodyTypes: [
+                    {
+                        bodyType: "ENDO",
+                        Date: "12/12/2018"
+                    },
+                    {
+                        bodyType: "MESO",
+                        Date: "01/08/2018"
+                    },
+                    {
+                        bodyType: "GODKNOWS",
+                        Date: "29/02/2018"
+                    },
+                ],
+                prevWeights: [
+                    {
+                        nWeight: 62,
+                        Date: "12/12/2018"
+                    },
+                    {
+                        nWeight: 59,
+                        Date: "01/08/2018"
+                    },
+                    {
+                        nWeight: 57,
+                        Date: "29/02/2018"
+                    },
+                ],
+                prevHeights: [
+                    {
+                        nHeight: 170,
+                        Date: "12/12/2018"
+                    },
+                    {
+                        nHeight: 193,
+                        Date: "01/08/2018"
+                    },
+                    {
+                        nHeight: 187,
+                        Date: "29/02/2018"
+                    },
+                ],
+            }
+        ],
         /*target : {
             tweight: 75,
             deadline: 11022020
