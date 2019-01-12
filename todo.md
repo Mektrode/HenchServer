@@ -3,7 +3,7 @@ Data {
     => Properly Structure the users objects
     => Include stats object (weight height etc)
     => Include target object (targetWeight, deadline, )
-    => Create meals object (mealCreatedAt, userTarget when created,)
+    => Create meals object (mealCreatedAt, userTarget when created?,)
     => Have dummy object for 3 meals a day consisting of different consumables for last 7 days
     => das
 
@@ -16,4 +16,30 @@ QL {
     Todo:-
     => 
     => 
+}
+
+
+//GraphiQL shortcuts
+
+//addConsumable
+mutation {
+  addConsumable(addcon:{name: "Tea"}) {
+    id
+    barcode
+    proteinfull
+  },
+    addUser(email: "filip@live.com", name: "MrFilip") {
+    id
+    name
+    email
+  }
+}
+
+
+
+//search username
+query {
+  username(uname: "JMo") {
+    email
+  }
 }

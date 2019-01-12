@@ -13,24 +13,26 @@ const schema = buildSchema (`
     }
 
     type Consumable {
-        id: ID!
-        barcode: Int!
+        id: ID
+        barcode: Int
         name: String!
-        cookingstyle: String!
-        weightfull: Int!
-        caloriesfull: Int!  
-        carbsfull: Int!
-        proteinfull: Int!
+        cookingstyle: String
+        totalweight: Int
+        caloriesfull: Int
+        carbsfull: Int
+        proteinfull: Int
+    }
+
+    input AddCon {
+        name: String!
     }
 
     type RootMutation {
         addUser (email: String!, name: String): User
-        addConsumable (name: String!, weightfull: Int!): Consumable
+        addConsumable(addcon: AddCon): Consumable
         #Update consumable
-        
         #create a meal
         #Update a meal
-
         #create onboarding
         #Update a stat
         #Update a target
@@ -82,22 +84,22 @@ const rootValue = {
         })
     },
 
-    addUser: ({email, name}) => {
+    addUser: args => {
         const user = {
             id: Date.now,
-            email,
-            name
+            email: args.email,
+            name: args.name
         }
         db.users.push(user);
         return user
     },
 
-    addConsumable: ({name, weightfull}) => {
+    addConsumable: ({name}) => {
         const consumableItem ={
             id: Date.now,
-            name,
-            weightfull
+            name //call args username name of query Input above
         }
+        console.log(name)
         db.consumables.push(consumableItem);
         return consumableItem
         //return db.consumables
