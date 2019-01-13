@@ -8,8 +8,6 @@ const graphQlSchema = require('./graphql/schema');
 const rootValue = {
     //resolve all the queries to expect
     users: () => db.users,
-
-    allconsumables: () => db.consumables,
     
     //user: args => db.users.find(user => user.id === args.id),
     // Same as code below!!
@@ -25,18 +23,6 @@ const rootValue = {
         })
     },
 
-    //Find item an using a name or barcode number
-    consume: function(args) {
-        return db.consumables.find(function(consume){
-            if (consume.name === args.name) {
-                return args.name
-            }
-            else if (consume.barcode === args.barcode){
-                return args.barcode
-            }
-        })
-    },
-
     addUser: args => {
         const user = {
             id: Date.now,
@@ -46,6 +32,41 @@ const rootValue = {
         console.log(args)
         db.users.push(user);
         return user
+    },
+
+    //Stats Query's
+    /*logs: () => {
+        return db.users.find(function(user){
+            return user.prevStatsLog
+        })
+    },*/
+    logs: () => db.users[0].prevStatsLog.prevBodyTypes[1],
+
+    /*addWeight: args => {//Ideally take userId as arg and loop through database to find right user, then add newWeight
+        const newWeightLog = {
+            nWeight : args.addweight.nWeight,
+            weightDate : args.addweight.weightDate
+        };
+        console.log(args);
+        return newWeightLog;
+    },*/
+
+
+    //Query
+    allconsumables: () => db.consumables,
+
+    //Resolvers
+
+    //Find item an using a name || barcode number
+    consume: function(args) {
+        return db.consumables.find(function(consume){
+            if (consume.name === args.name) {
+                return args.name
+            }
+            else if (consume.barcode === args.barcode){
+                return args.barcode
+            }
+        })
     },
 
     addConsumable: args => {

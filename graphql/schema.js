@@ -31,6 +31,7 @@ module.exports = buildSchema(`
         password: String
         #[Meal!]
         stats: Stats
+        prevStatsLog: PrevStatsLog
         #targets: Targets
     }
 
@@ -50,34 +51,40 @@ module.exports = buildSchema(`
         heightLastUpdated: String 
     }
 
-    type NewWeight {
-        nWeight: Int
-        Date: String
+    type PrevStatsLog {
+        prevBodyTypes: NewBodyType
+        prevWeights: PrevWeights
+        prevHeights: NewHeight
+    }
+
+    type PrevWeights {
+        nWeight: Int!
+        weightDate: String!
     }
 
     type NewHeight {
-        nHeight: Int
-        Date: String
+        nHeight: Int!
+        heightDate: String!
     }
 
     type NewBodyType {
-        nBodyType: String
-        Date: String
+        nBodyType: String!
+        bodyDate: String!
     }
 
     input AddWeight{
         nWeight: Int
-        Date: String
+        weightDate: String
     }
 
     input AddHeight{
-        nWeight: Int
-        Date: String
+        nHeight: Int
+        heightDate: String
     }
 
     input AddBodyType{
         nBodyType: Int
-        Date: String
+        bodyDate: String
     }
 
     #input Targets { //add later
@@ -97,7 +104,7 @@ module.exports = buildSchema(`
         addConsumable(addcon: AddCon): Consumable
         
         #Stats
-        addWeight (addweight: AddWeight): NewWeight
+        addWeight (addweight: AddWeight): PrevWeights
         addHeight (addheight: AddHeight): NewHeight
         addBodyType (addbodytype: AddBodyType): NewBodyType
 
@@ -116,6 +123,7 @@ module.exports = buildSchema(`
         username(uname: String): User
         consume(name: String, barcode: Int): Consumable
         allconsumables: [Consumable!]!
+        logs: [PrevStatsLog!]!
     }
 
     schema {

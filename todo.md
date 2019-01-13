@@ -36,8 +36,11 @@ mutation {
     barcode
     proteinfull
   },
-    addUser(email: "filip@live.com", username: "MrFilip",password: "jkUDFa") {
+  addUser(email: "filip@live.com", username: "MrFilip",password: "jkUDFa") {
     username
+  },
+  addWeight(addweight:{nWeight: 123, weightDate: "11062019"}) {
+  	nWeight
   }
 }
 

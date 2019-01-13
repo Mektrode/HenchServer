@@ -19,43 +19,43 @@ users: [//add jwt authentication then meals under it here!!
                 prevBodyTypes: [
                     {
                         bodyType: "ENDO",
-                        Date: "12/12/2018"
+                        bodyDate: "12/12/2018"
                     },
                     {
                         bodyType: "MESO",
-                        Date: "01/08/2018"
+                        bodyDate: "01/08/2018"
                     },
                     {
                         bodyType: "GODKNOWS",
-                        Date: "29/02/2018"
+                        bodyDate: "29/02/2018"
                     },
                 ],
                 prevWeights: [
                     {
                         nWeight: 62,
-                        Date: "12/12/2018"
+                        weightDate: "12/12/2018"
                     },
                     {
                         nWeight: 59,
-                        Date: "01/08/2018"
+                        weightDate: "01/08/2018"
                     },
                     {
                         nWeight: 57,
-                        Date: "29/02/2018"
+                        weightDate: "29/02/2018"
                     },
                 ],
                 prevHeights: [
                     {
                         nHeight: 170,
-                        Date: "12/12/2018"
+                        heightDate: "12/12/2018"
                     },
                     {
                         nHeight: 193,
-                        Date: "01/08/2018"
+                        heightDate: "01/08/2018"
                     },
                     {
                         nHeight: 187,
-                        Date: "29/02/2018"
+                        heightDate: "29/02/2018"
                     },
                 ],
             }
