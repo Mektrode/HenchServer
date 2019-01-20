@@ -26,7 +26,7 @@ FrontEnd:
 - to be able to 
 
 
-//GraphiQL shortcuts
+GraphiQL shortcuts
 
 //addConsumable
 mutation {
@@ -44,10 +44,23 @@ mutation {
   }
 }
 
-//nested views of stats from users
+mutation {
+    addUser(
+      adduser: {
+        email: "filip@live.com", 
+        username: "MrFilip",
+        password: "jkUDFa"
+      }
+    ) 
+  {//what to call back
+    username
+    email
+  }
+}
 
+//nested views of everything from all users
 query {
-  user(id:1) {
+  users {
     id
     email
     username
@@ -61,15 +74,15 @@ query {
       heightLastUpdated
     }
     prevStatsLog {
-      prevWeights {
+      allWeights {
         nWeight
         weightDate
       }
-      prevBodyTypes {
+      allBodyTypes {
         nBodyType
         bodyDate
       }
-      prevHeights {
+      allHeights {
         nHeight
         heightDate
       }
