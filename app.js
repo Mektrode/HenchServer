@@ -94,10 +94,10 @@ const rootValue = {
     }
 }
 
-const app = express();
+const server = express();
 
 
-app.use('/graphql', graphqlHTTP({
+server.use('/graphql', graphqlHTTP({
     schema: graphQlSchema,
     rootValue,
     graphiql: true
@@ -105,6 +105,6 @@ app.use('/graphql', graphqlHTTP({
 
 
 
-app.listen(3000, () => console.log('listening on port 3000!!'));
+server.listen(3000, () => console.log('listening on port 3000!!'));
 
 //Connect to mongoosedb.then(app.listen).catch(anyerrors)

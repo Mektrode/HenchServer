@@ -16,21 +16,21 @@ users: [//add jwt authentication then meals under it here!!
         },
         prevStatsLog: [
             {
-                prevBodyTypes: [
+                allBodyTypes: [
                     {
-                        bodyType: "ENDO",
+                        nBodyType: "ENDO",
                         bodyDate: "12/12/2018"
                     },
                     {
-                        bodyType: "MESO",
+                        nBodyType: "MESO",
                         bodyDate: "01/08/2018"
                     },
                     {
-                        bodyType: "GODKNOWS",
+                        nBodyType: "GODKNOWS",
                         bodyDate: "29/02/2018"
                     },
                 ],
-                prevWeights: [
+                allWeights: [
                     {
                         nWeight: 62,
                         weightDate: "12/12/2018"
@@ -44,7 +44,7 @@ users: [//add jwt authentication then meals under it here!!
                         weightDate: "29/02/2018"
                     },
                 ],
-                prevHeights: [
+                allHeights: [
                     {
                         nHeight: 170,
                         heightDate: "12/12/2018"

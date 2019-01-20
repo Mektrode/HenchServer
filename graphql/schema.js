@@ -27,11 +27,11 @@ module.exports = buildSchema(`
         id: ID!
         email: String!
         name: String
-        uname: String
+        username: String
         password: String
         #[Meal!]
         stats: Stats
-        prevStatsLog: PrevStatsLog
+        prevStatsLog: [PrevStatsLog]
         #targets: Targets
     }
 
@@ -44,7 +44,9 @@ module.exports = buildSchema(`
     type Stats {#get info from each individual Types defined below Stats
         bodyType: String
         bodyTypeLastUpdated: String
+
 #howtogetpreviousinanarray
+
         latestWeight: Int
         weightLastUpdated: String
         latestHeight: Int
@@ -52,12 +54,12 @@ module.exports = buildSchema(`
     }
 
     type PrevStatsLog {
-        prevBodyTypes: NewBodyType
-        prevWeights: PrevWeights
-        prevHeights: NewHeight
+        allBodyTypes: [NewBodyType]
+        allWeights: [NewWeights]
+        allHeights: [NewHeight]
     }
 
-    type PrevWeights {
+    type NewWeights {
         nWeight: Int!
         weightDate: String!
     }
@@ -104,7 +106,7 @@ module.exports = buildSchema(`
         addConsumable(addcon: AddCon): Consumable
         
         #Stats
-        addWeight (addweight: AddWeight): PrevWeights
+        addWeight (addweight: AddWeight): NewWeights
         addHeight (addheight: AddHeight): NewHeight
         addBodyType (addbodytype: AddBodyType): NewBodyType
 

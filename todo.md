@@ -47,20 +47,59 @@ mutation {
 //nested views of stats from users
 
 query {
-  user(id: "1"){
+  user(id:1) {
+    id
+    email
+    username
+    name
     stats {
       bodyType
       bodyTypeLastUpdated
       latestWeight
+      weightLastUpdated
       latestHeight
+      heightLastUpdated
+    }
+    prevStatsLog {
+      prevWeights {
+        nWeight
+        weightDate
+      }
+      prevBodyTypes {
+        nBodyType
+        bodyDate
+      }
+      prevHeights {
+        nHeight
+        heightDate
+      }
     }
   }
 }
-
 
 //search username
 query {
   username(uname: "JMo") {
     email
+  }
+}
+
+
+//bug fixes
+20/01/2019 {
+  when the query is same as schema but different from the database {
+    if schema is nullable {
+      it will still work in Graphiql but will return null since does not exist in the database
+    }
+    if query is (!/non-nullable) {
+      it will throw an error e.g. (Cannot return null for non-nullable field Stats.bodyiType.)
+    }
+  }
+
+  when query made is same as database but schema not set up for query {
+    Cannot query field \"bodyType\" on type \"Stats\". Did you mean \"bodyiType\"?
+  }
+
+  //bug fixed by making schema more specific (added [] to let graphql know to expect an array of data)
   }
 }
