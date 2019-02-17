@@ -4,6 +4,7 @@ const {buildSchema } = require('graphql');
 const db = require('./database.js').db;
 const graphQlSchema = require('./graphql/schema');
 const rootValue = require('./graphql/resolvers/index.js');
+const mongoose = require('mongoose');
 
 const server = express();
 
@@ -14,8 +15,17 @@ server.use('/graphql', graphqlHTTP({
     graphiql: true
 }))
 
-
-
-server.listen(3000, () => console.log('listening on port 3000!!'));
-
-//Connect to mongoosedb.then(app.listen).catch(anyerrors)
+mongoose
+    .connect(`mongodb+srv://${process.env.MONGO_USER}:${
+        process.env.MONGO_PASSWORD
+    }@hnchrv01-zndec.mongodb.net/test?retryWrites=true`
+    )
+    .then(() => {
+        server.listen(
+            process.env.PORT, 
+            () => console.log(`listening on port ${process.env.PORT}!!`)
+        );
+    })
+    .catch(err => {
+        console.log(err);
+    })
