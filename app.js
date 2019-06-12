@@ -15,11 +15,18 @@ server.use('/graphql', graphqlHTTP({
     graphiql: true
 }))
 
+server.listen(
+    process.env.PORT, 
+    () => console.log(`listening on port ${process.env.PORT}!!`)
+);
+
+/*
 mongoose
     .connect(`mongodb+srv://${process.env.MONGO_USER}:${
         process.env.MONGO_PASSWORD
     }@hnchrv01-zndec.mongodb.net/test?retryWrites=true`
     )
+    /*
     .then(() => {
         server.listen(
             process.env.PORT, 
@@ -29,3 +36,4 @@ mongoose
     .catch(err => {
         console.log(err);
     })
+*/
